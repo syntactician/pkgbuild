@@ -30,22 +30,22 @@ prepare() {
 		-e '/borderpx/s/= .*/= 20;/' \
 		-e '/char worddelimiters/s/= .*/= " '"'"'`\\\"()[]{}<>|";/' \
 		-e '/int defaultcs/s/= .*/= 1;/' \
-		-e 's/"black"/"#2b303b"/' \
-		-e 's/"red3"/"#bf616a"/' \
-		-e 's/"green3"/"#a3be8c"/' \
-		-e 's/"yellow3"/"#ebcb8b"/'\
-		-e 's/"blue2"/"#8fa1b3"/' \
-		-e 's/"magenta3"/"#b48ead"/' \
-		-e 's/"cyan3"/"#96b5b4"/' \
-		-e 's/"gray90"/"#c0c5ce"/' \
-		-e 's/"gray50"/"#65737e"/' \
-		-e 's/"red"/"#d08770"/' \
-		-e 's/"green"/"#343d46"/' \
-		-e 's/"yellow"/"#4f5b66"/' \
-		-e 's/"#5c5cff"/"#a7adba"/' \
-		-e 's/"magenta"/"#dfe1e8"/' \
-		-e 's/"cyan"/"#ab7967"/' \
-		-e 's/"white"/"#eff1f5"/' \
+		-e 's/"black"/"#4e4e4e"/' \
+		-e 's/"red3"/"#d68787"/' \
+		-e 's/"green3"/"#5f865f"/' \
+		-e 's/"yellow3"/"#d8af5f"/'\
+		-e 's/"blue2"/"#85add4"/' \
+		-e 's/"magenta3"/"#d7afaf"/' \
+		-e 's/"cyan3"/"#87afaf"/' \
+		-e 's/"gray90"/"#d0d0d0"/' \
+		-e 's/"gray50"/"#626262"/' \
+		-e 's/"red"/"#d75f87"/' \
+		-e 's/"green"/"#87af87"/' \
+		-e 's/"yellow"/"#ffd787"/' \
+		-e 's/"#5c5cff"/"#add4fb"/' \
+		-e 's/"magenta"/"#ffafaf"/' \
+		-e 's/"cyan"/"#87d7d7"/' \
+		-e 's/"white"/"#e4e4e4"/' \
 		-i config.def.h
 	sed \
 		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \

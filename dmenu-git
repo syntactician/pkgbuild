@@ -28,10 +28,10 @@ prepare() {
       cp "${SRCDEST}/config.h" .
   fi
   sed -e 's/monospace/Liberation Mono/' \
-      -e '/normbgcolor/s/#[0-9a-fA-F]*/#2b303b/' \
-      -e '/normfgcolor/s/#[0-9a-fA-F]*/#a7adba/' \
-	  -e '/selbgcolor/s/#[0-9a-fA-F]*/#2b303b/' \
-	  -e '/selfgcolor/s/#[0-9a-fA-F]*/#bf616a/' \
+      -e '/normbgcolor/s/#[0-9a-fA-F]*/#3a3a3a/' \
+      -e '/normfgcolor/s/#[0-9a-fA-F]*/#d0d0d0/' \
+	  -e '/selbgcolor/s/#[0-9a-fA-F]*/#3a3a3a/' \
+	  -e '/selfgcolor/s/#[0-9a-fA-F]*/#d75f87/' \
 	  -i config.def.h
 }
 

@@ -3,7 +3,7 @@
 
 pkgname=slock-git
 _pkgname=slock
-pkgver=20150508.754195f
+pkgver=20160215.65b8d52
 pkgrel=1
 pkgdesc='Simple X display locker'
 url='http://tools.suckless.org/slock'
@@ -25,9 +25,9 @@ pkgver() {
 prepare() {
 	cd "${srcdir}/${_pkgname}"
 	sed \
-	    -e '/initialization/s/".*"/"#2b303b"/' \
-		-e '/input/s/#[0-9a-fA-F]*/#65737e/' \
-		-e '/wrong/s/#[0-9a-fA-F]*/#bf616a/' \
+	    -e '/initialization/s/".*"/"#3a3a3a"/' \
+		-e '/input/s/#[0-9a-fA-F]*/#4e4e4e/' \
+		-e '/wrong/s/#[0-9a-fA-F]*/#d75f87/' \
 		-i config.def.h
 	sed \
 		-e 's/CPPFLAGS =/CPPFLAGS +=/g' \
