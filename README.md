@@ -2,26 +2,13 @@
 
 #### How to use:
 
-* Clone as a subdirectory of `~.build`
-* With GNU Stow:
+* Clone `~.build`
+* Run:
 
 ```{sh}
 for PKG in */; do
-	stow $PKG
 	(
-		cd ../$PKG
-		makepkg -sri
-	)
-done
-```
-
-* Without:
-
-```{sh}
-for PKG in */; do
-	ln $PKG/$PKG ../$PKG
-	(
-		cd ../$PKG
+		cd $PKG
 		makpkg -sri
 	)
 done
