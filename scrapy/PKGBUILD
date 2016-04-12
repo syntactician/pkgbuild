@@ -1,7 +1,8 @@
 # Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
 
 pkgname=scrapy-git
-pkgver=1.2
+_pkgname=scrapy
+pkgver=1.2.0dev2.r128.gba6dbad
 pkgrel=1
 pkgdesc="A high-level Web Crawling and Web Scraping framework"
 arch=('any')
@@ -9,24 +10,26 @@ makedepends=('python-setuptools')
 depends=('python-w3lib>=1.8.0' 'python-six>=1.5.2' 'python-service-identity' 'python-queuelib' 'python-pyopenssl' 'python-parsel>=0.9.3' 'python-lxml' 'python-cssselect>=0.9' 'python-twisted>=10.0.0' 'python-pydispatcher>=2.0.5')
 url="https://github.com/scrapy/scrapy"
 license=('BSD')
-# source=(https://pypi.python.org/packages/source/S/Scrapy/Scrapy-${pkgver}.tar.gz)
-source("git+https://github.com/scrapy/scrapy.git")
+source=("git+https://github.com/scrapy/scrapy.git")
 md5sums=('SKIP')
 
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+
 pkgver() {
-	cd "$pkgname"
+	cd "${srcdir}/${_pkgname}"
 	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
 }
 
 build() {
-	cd "$srcdir/Scrapy-${pkgver}"
+	cd "${srcdir}/${_pkgname}"
 
 	msg 'Building...'
 	python setup.py build
 }
 
 package() {
-	cd "$srcdir/Scrapy-${pkgver}/"
+	cd "${srcdir}/${_pkgname}"
 
 	msg 'Installing...'
 	python setup.py install --root="${pkgdir}/" --optimize=1
