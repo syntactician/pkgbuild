@@ -1,26 +1,29 @@
 # Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
 
-pkgname=python-parsel
+_pkgname=parsel
+pkgname=python-${_pkgname}
 pkgver=1.0.1
 pkgrel=1
 pkgdesc="a library to extract data from HTML and XML using XPath and CCS selectors"
 arch=('any')
 makedepends=('python-setuptools')
-depends=('python-cssselect>=0.9' 'python-six>=1.5.2' 'python-lxml' 'python-w3lib>=1.8.0')
+depends=('python-cssselect' 'python-six' 'python-lxml' 'python-w3lib')
 url="https://github.com/scrapy/parsel"
 license=('BSD')
-source=(https://pypi.python.org/packages/source/p/${pkgname#python-}/${pkgname#python-}-${pkgver}.tar.gz)
+source=(https://pypi.python.org/packages/source/p/${_pkgname}/${_pkgname}-${pkgver}.tar.gz)
 md5sums=('552f8d7e3267d331134f70c694a2bfb0')
 
+provides=("python-${_pkgname}")
+
 build() {
-	cd "$srcdir/${pkgname#python-}-${pkgver}"
+	cd "${srcdir}/${_pkgname}-${pkgver}"
 
 	msg 'Building...'
 	python setup.py build
 }
 
 package() {
-	cd "$srcdir/${pkgname#python-}-${pkgver}/"
+	cd "${srcdir}/${_pkgname}-${pkgver}/"
 
 	msg 'Installing...'
 	python setup.py install --root="${pkgdir}/" --optimize=1
