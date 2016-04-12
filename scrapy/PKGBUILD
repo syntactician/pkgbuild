@@ -1,7 +1,7 @@
 # Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
 
-pkgname=python-scrapy
-pkgver=1.1.0rc1
+pkgname=scrapy-git
+pkgver=1.2
 pkgrel=1
 pkgdesc="A high-level Web Crawling and Web Scraping framework"
 arch=('any')
@@ -9,8 +9,14 @@ makedepends=('python-setuptools')
 depends=('python-w3lib>=1.8.0' 'python-six>=1.5.2' 'python-service-identity' 'python-queuelib' 'python-pyopenssl' 'python-parsel>=0.9.3' 'python-lxml' 'python-cssselect>=0.9' 'python-twisted>=10.0.0' 'python-pydispatcher>=2.0.5')
 url="https://github.com/scrapy/scrapy"
 license=('BSD')
-source=(https://pypi.python.org/packages/source/S/Scrapy/Scrapy-${pkgver}.tar.gz)
-md5sums=('79dad4579baf08589d3c69bba611328b')
+# source=(https://pypi.python.org/packages/source/S/Scrapy/Scrapy-${pkgver}.tar.gz)
+source("git+https://github.com/scrapy/scrapy.git")
+md5sums=('SKIP')
+
+pkgver() {
+	cd "$pkgname"
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
 
 build() {
 	cd "$srcdir/Scrapy-${pkgver}"
