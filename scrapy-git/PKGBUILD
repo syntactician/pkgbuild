@@ -13,7 +13,7 @@ license=('BSD')
 source=("git+https://github.com/scrapy/scrapy.git")
 md5sums=('SKIP')
 
-provides=("${_pkgname}-${pkgver}")
+provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 
 pkgver() {

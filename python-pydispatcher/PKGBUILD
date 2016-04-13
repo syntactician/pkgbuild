@@ -1,0 +1,24 @@
+_realname=PyDispatcher
+_pkgname=pydispatcher
+pkgname=python-${_pkgname}
+pkgver=2.0.5
+pkgrel=2
+pkgdesc="Multi-producer-multi-consumer signal dispatching mechanism"
+url="http://sourceforge.net/projects/${_pkgname}"
+source=("https://pypi.python.org/packages/source/P/${_realname}/${_realname}-${pkgver}.tar.gz")
+arch=('any')
+license=('GPL')
+makedepends=()
+depends=('python-distribute')
+md5sums=('1b9c2ca33580c2770577add7130b0b28')
+provides=("${pkgname}")
+
+build() {
+	cd "${srcdir}/${_realname}-${pkgver}"
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_realname}-${pkgver}"
+	python setup.py install --root="${pkgdir}" --optimize=1
+}
