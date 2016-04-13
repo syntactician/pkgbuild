@@ -1,3 +1,6 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+# AUR Maintainer: Thomas Sarboni <max-k@post.com>
+
 _realname=PyDispatcher
 _pkgname=pydispatcher
 pkgname=python-${_pkgname}
