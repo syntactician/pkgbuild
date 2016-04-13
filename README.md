@@ -21,5 +21,7 @@ done
 * [`slock`](http://tools.suckless.org/slock) with Seoul256 colors
 * [`st`](http://st.suckless.org) with Seoul256 colors, padding, and larger
   text
-* [Scrapy](http://scrapy.org/) [1.1.0rc1](https://pypi.python.org/pypi/Scrapy/1.1.0rc1) a [beta release](https://blog.scrapinghub.com/2016/02/04/python-3-support-with-scrapy-1-1rc1/) for Python 3
+* [Scrapy](http://scrapy.org/) for Python 3
     * [parsel](https://github.com/scrapy/parsel), a new Scrapy library
+	* [pydispatch](https://pydispatcher.sourceforge.net) without Python 2
+	  dependencies
