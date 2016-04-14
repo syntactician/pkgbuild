@@ -1,0 +1,14 @@
+pkgbase = python-pydispatcher
+	pkgdesc = Multi-producer-multi-consumer signal dispatching mechanism
+	pkgver = 2.0.5
+	pkgrel = 2
+	url = http://sourceforge.net/projects/pydispatcher
+	arch = any
+	license = GPL
+	depends = python-distribute
+	provides = python-pydispatcher
+	source = https://pypi.python.org/packages/source/P/PyDispatcher/PyDispatcher-2.0.5.tar.gz
+	md5sums = 1b9c2ca33580c2770577add7130b0b28
+
+pkgname = python-pydispatcher
+
