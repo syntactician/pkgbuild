@@ -1,0 +1,26 @@
+pkgbase = scrapy-git
+	pkgdesc = A high-level Web Crawling and Web Scraping framework
+	pkgver = 1.2.0dev2.r128.gba6dbad
+	pkgrel = 1
+	url = http://scrapy.org
+	arch = any
+	license = BSD
+	makedepends = python-setuptools
+	makedepends = git
+	depends = python-w3lib
+	depends = python-six
+	depends = python-service-identity
+	depends = python-queuelib
+	depends = python-pyopenssl
+	depends = python-parsel
+	depends = python-lxml
+	depends = python-cssselect
+	depends = python-twisted
+	depends = python-pydispatcher
+	provides = scrapy
+	conflicts = scrapy
+	source = git+https://github.com/scrapy/scrapy.git
+	md5sums = SKIP
+
+pkgname = scrapy-git
+
