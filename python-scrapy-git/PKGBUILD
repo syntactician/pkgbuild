@@ -1,0 +1,36 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+
+_pkgname=scrapy
+pkgname=${_pkgname}-git
+pkgver=1.2.0dev2.r128.gba6dbad
+pkgrel=1
+pkgdesc="A high-level Web Crawling and Web Scraping framework"
+arch=('any')
+makedepends=('python-setuptools' 'git')
+depends=('python-w3lib' 'python-six' 'python-service-identity' 'python-queuelib' 'python-pyopenssl' 'python-parsel' 'python-lxml' 'python-cssselect' 'python-twisted' 'python-pydispatcher')
+url="http://scrapy.org"
+license=('BSD')
+source=("git+https://github.com/scrapy/scrapy.git")
+md5sums=('SKIP')
+
+provides=("${_pkgname}")
+conflicts=("${_pkgname}")
+
+pkgver() {
+	cd "${srcdir}/${_pkgname}"
+	git describe --long --tags | sed 's/\([^-]*-g\)/r\1/;s/-/./g'
+}
+
+build() {
+	cd "${srcdir}/${_pkgname}"
+
+	msg 'Building...'
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}"
+
+	msg 'Installing...'
+	python setup.py install --root="${pkgdir}/" --optimize=1
+}

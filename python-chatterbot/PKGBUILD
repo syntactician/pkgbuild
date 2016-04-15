@@ -1,0 +1,40 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+
+_realname=ChatterBot
+_pkgname=chatterbot
+pkgname=python-${_pkgname}
+pkgver=0.3.6
+pkgrel=1
+pkgdesc="An open-source chat bot program written in Python"
+arch=('any')
+makedepends=('python-setuptools')
+depends=('python-jsondatabase'
+         'python-twitter'
+		 'python-pymongo'
+		 'python-twitter'
+		 'python-fuzzywuzzy'
+		 'python-nltk'
+		 'python-textblob'
+		 'python-forecastio'
+		 'python-requests')
+optdepends=('python-Levenshtein: for increesed speed')
+url="https://pypi.python.org/pypi/${_realname}"
+license=('BSD')
+source=(https://pypi.python.org/packages/source/C/${_realname}/${_realname}-${pkgver}.tar.gz)
+md5sums=('7ef111ac05115d51cbe4a123e564e12f')
+
+provides=("python-${_pkgname}")
+
+build() {
+	cd "${srcdir}/${_realname}-${pkgver}"
+
+	msg 'Building...'
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_realname}-${pkgver}/"
+
+	msg 'Installing...'
+	python setup.py install --root="${pkgdir}/" --optimize=1
+}

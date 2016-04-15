@@ -1,0 +1,30 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+
+_pkgname=textblob
+pkgname=python-${_pkgname}
+pkgver=0.11.1
+pkgrel=1
+pkgdesc="Simple, Pythonin text processing, Sentiment analysis, part-of-speech tagging, noun phrase parsing, and more"
+arch=('any')
+makedepends=('python-setuptools')
+depends=('python')
+url="https://github.com/sloria/TextBlob"
+license=('MIT')
+source=(https://pypi.python.org/packages/source/t/${_pkgname}/${_pkgname}-${pkgver}.tar.gz)
+md5sums=('d8e46b28da38bb5d046790692fee67d9')
+
+provides=("python-${_pkgname}")
+
+build() {
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+
+	msg 'Building...'
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}-${pkgver}/"
+
+	msg 'Installing...'
+	python setup.py install --root="${pkgdir}/" --optimize=1
+}

@@ -1,0 +1,15 @@
+pkgbase = python-jsondatabase
+	pkgdesc = A flat file database for json objects
+	pkgver = 0.1.1
+	pkgrel = 1
+	url = https://pypi.org/pypi/jsondatabase
+	arch = any
+	license = BSD
+	makedepends = python-setuptools
+	depends = python
+	provides = python-jsondatabase
+	source = https://pypi.python.org/packages/source/j/jsondatabase/jsondatabase-0.1.1.tar.gz
+	md5sums = 6d8b5e1de637a123365064ddee2a1515
+
+pkgname = python-jsondatabase
+

@@ -1,0 +1,30 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+
+_pkgname=jsondatabase
+pkgname=python-${_pkgname}
+pkgver=0.1.1
+pkgrel=1
+pkgdesc="A flat file database for json objects"
+arch=('any')
+makedepends=('python-setuptools')
+depends=('python')
+url="https://pypi.org/pypi/jsondatabase"
+license=('BSD')
+source=(https://pypi.python.org/packages/source/j/${_pkgname}/${_pkgname}-${pkgver}.tar.gz)
+md5sums=('6d8b5e1de637a123365064ddee2a1515')
+
+provides=("python-${_pkgname}")
+
+build() {
+	cd "${srcdir}/${_pkgname}-${pkgver}"
+
+	msg 'Building...'
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_pkgname}-${pkgver}/"
+
+	msg 'Installing...'
+	python setup.py install --root="${pkgdir}/" --optimize=1
+}

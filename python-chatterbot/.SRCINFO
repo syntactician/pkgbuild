@@ -1,0 +1,24 @@
+pkgbase = python-chatterbot
+	pkgdesc = An open-source chat bot program written in Python
+	pkgver = 0.3.6
+	pkgrel = 1
+	url = https://pypi.python.org/pypi/ChatterBot
+	arch = any
+	license = BSD
+	makedepends = python-setuptools
+	depends = python-jsondatabase
+	depends = python-twitter
+	depends = python-pymongo
+	depends = python-twitter
+	depends = python-fuzzywuzzy
+	depends = python-nltk
+	depends = python-textblob
+	depends = python-forecastio
+	depends = python-requests
+	optdepends = python-Levenshtein: for increesed speed
+	provides = python-chatterbot
+	source = https://pypi.python.org/packages/source/C/ChatterBot/ChatterBot-0.3.6.tar.gz
+	md5sums = 7ef111ac05115d51cbe4a123e564e12f
+
+pkgname = python-chatterbot
+

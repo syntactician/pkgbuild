@@ -1,0 +1,15 @@
+pkgbase = python-textblob
+	pkgdesc = Simple, Pythonin text processing, Sentiment analysis, part-of-speech tagging, noun phrase parsing, and more
+	pkgver = 0.11.1
+	pkgrel = 1
+	url = https://github.com/sloria/TextBlob
+	arch = any
+	license = MIT
+	makedepends = python-setuptools
+	depends = python
+	provides = python-textblob
+	source = https://pypi.python.org/packages/source/t/textblob/textblob-0.11.1.tar.gz
+	md5sums = d8e46b28da38bb5d046790692fee67d9
+
+pkgname = python-textblob
+

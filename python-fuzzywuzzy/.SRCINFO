@@ -1,0 +1,15 @@
+pkgbase = python-fuzzywuzzy
+	pkgdesc = Fuzzy string matching in python
+	pkgver = 0.10.0
+	pkgrel = 1
+	arch = any
+	license = MIT
+	makedepends = python-setuptools
+	depends = python-difflib
+	optdepends = python-Levenshtein: dramatic speedup
+	provides = python-fuzzywuzzy
+	source = https://pypi.python.org/packages/source/f/fuzzywuzzy/fuzzywuzzy-0.10.0.tar.gz
+	md5sums = a778229e1362dd8cb7626e21303552e3
+
+pkgname = python-fuzzywuzzy
+
