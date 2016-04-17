@@ -1,0 +1,31 @@
+# Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
+
+_realname=vaderSentiment
+_pkgname=vadersentiment
+pkgname=python-${_pkgname}
+pkgver=0.5
+pkgrel=1
+pkgdesc="Valence Aware Dictionary and sEntiment Reasoner: a lexicon and rule-based sentiment analysis tool that is specifically attuned to sentiments expressed in social media, and work well on texts from other domains"
+arch=('any')
+makedepends=('python-setuptools')
+depends=('python')
+url="https://github.com/cjhutto/vaderSentiment"
+license=('MIT')
+source=("https://pypi.python.org/packages/source/v/${_realname}/${_realname}-${pkgver}.zip")
+md5sums=('c7359bb77d9c886ee025ee808a0d0d9c')
+
+provides=("${pkgname}")
+
+build() {
+	cd "${srcdir}/${_realname}-${pkgver}"
+
+	msg 'Building...'
+	python setup.py build
+}
+
+package() {
+	cd "${srcdir}/${_realname}-${pkgver}/"
+
+	msg 'Installing...'
+	python setup.py install --root="${pkgdir}/" --optimize=1
+}
