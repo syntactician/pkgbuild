@@ -2,8 +2,8 @@
 
 #### How to use:
 
-* Clone `~.build`
-* Run:
+* Clone repository
+* Run (in repository):
 
 ```{sh}
 for PKG in */; do
