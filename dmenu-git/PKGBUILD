@@ -1,9 +1,9 @@
 # Maintainer: Edward Hernandez <ehernandez@email.wm.edu>
-# AUR maintainer:  Håvard Pettersson <mail@haavard.me>
+# AUR maintainer: Håvard Pettersson <mail@haavard.me>
 
 _pkgname=dmenu
 pkgname=$_pkgname-git
-pkgver=4.6.4.gb3d9451
+pkgver=4.6.18.g5cd66e2
 pkgrel=1
 pkgdesc="A generic menu for X"
 url="http://tools.suckless.org/dmenu/"
@@ -17,33 +17,34 @@ source=(git://git.suckless.org/$_pkgname)
 sha256sums=('SKIP')
 
 pkgver() {
-  cd $_pkgname
-  git describe --tags --long | sed 's/-/./g'
+	cd $_pkgname
+	git describe --tags --long | sed 's/-/./g'
 }
 
 prepare() {
-  cd $_pkgname
-  # to use a custom config.h, place it in the package directory
-  if [[ -f ${SRCDEST}/config.h ]]; then
-      cp "${SRCDEST}/config.h" .
-  fi
-  sed -e 's/monospace/Liberation Mono/' \
-      -e '/normbgcolor/s/#[0-9a-fA-F]*/#3a3a3a/' \
-      -e '/normfgcolor/s/#[0-9a-fA-F]*/#d0d0d0/' \
-	  -e '/selbgcolor/s/#[0-9a-fA-F]*/#3a3a3a/' \
-	  -e '/selfgcolor/s/#[0-9a-fA-F]*/#d75f87/' \
-	  -i config.def.h
+	cd $_pkgname
+	# to use a custom config.h, place it in the package directory
+	if [[ -f ${SRCDEST}/config.h ]]; then
+		cp "${SRCDEST}/config.h" .
+	fi
+	sed \
+		-e 's/monospace/Liberation Mono/' \
+		-e 's/#bbbbbb/#3a3a3a/' \
+		-e 's/#222222/#d0d0d0/' \
+		-e 's/#eeeeee/#3a3a3a/' \
+		-e 's/#005577/#d75f87/' \
+		-i config.def.h
 }
 
 build(){
-  cd $_pkgname
-  make \
-    X11INC=/usr/include/X11 \
-    X11LIB=/usr/lib/X11
+		cd $_pkgname
+		make \
+			X11INC=/usr/include/X11 \
+			X11LIB=/usr/lib/X11
 }
 
 package() {
-  cd $_pkgname
-  make PREFIX=/usr DESTDIR="$pkgdir" install
-  install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
+	cd $_pkgname
+	make PREFIX=/usr DESTDIR="$pkgdir" install
+	install -Dm644 LICENSE "$pkgdir"/usr/share/licenses/$pkgname/LICENSE
 }
