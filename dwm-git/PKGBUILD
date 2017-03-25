@@ -1,0 +1,60 @@
+pkgname=dwm-git
+_pkgname=dwm
+pkgver=6.1.14.gbb3bd6f
+pkgrel=1
+pkgdesc="A dynamic window manager for X"
+url="http://dwm.suckless.org"
+arch=('i686' 'x86_64')
+license=('MIT')
+options=(zipman)
+depends=('libx11' 'libxinerama' 'libxft')
+makedepends=('git')
+install=dwm.install
+provides=('dwm')
+conflicts=('dwm')
+epoch=1
+source=(config.h
+        dwm.desktop
+        'http://dwm.suckless.org/patches/dwm-noborder-20170207-bb3bd6f.diff'
+        'http://dwm.suckless.org/patches/dwm-rmaster-6.1.diff'
+        "$_pkgname::git+http://git.suckless.org/dwm")
+md5sums=('d80aa6c607a1089c4532fd76f8e1649d'
+         '939f403a71b6e85261d09fc3412269ee'
+         'fbb786263f2d714b18368ff64779d669'
+         '57711a3d2b9261a847756a5b7c77c831'
+         'SKIP')
+
+pkgver(){
+  cd $_pkgname
+  git describe --tags |sed 's/-/./g'
+}
+
+prepare() {
+  cd $_pkgname
+
+	for file in "${source[@]}"; do
+		if [[ "$file" == "config.h" ]]; then
+			# add config.h if present in source array
+			# Note: this supersedes the above sed to config.def.h
+			cp "$srcdir/$file" .
+		elif [[ "$file" == *.diff || "$file" == *.patch ]]; then
+			# add all patches present in source array
+			patch -Np1 <"$srcdir/$(basename ${file})"
+		fi
+	done
+}
+
+build() {
+  cd $_pkgname
+  make X11INC=/usr/include/X11 X11LIB=/usr/lib/X11
+}
+
+package() {
+  cd $_pkgname
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -m644 -D LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+  install -m644 -D README "$pkgdir/usr/share/doc/$pkgname/README"
+  install -m644 -D ../dwm.desktop "$pkgdir/usr/share/xsessions/dwm.desktop"
+}
+
+# vim:set ts=2 sw=2 et:
