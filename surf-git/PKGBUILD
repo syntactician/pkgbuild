@@ -1,0 +1,60 @@
+# Maintainer: sekret
+_pkgname=surf
+pkgname=$_pkgname-git
+pkgver=0.7.13.gab16fa5
+pkgrel=1
+pkgdesc="a WebKit based browser"
+arch=('i686' 'x86_64')
+url="http://surf.suckless.org/"
+license=('custom:MIT/X')
+depends=('webkitgtk2' 'xorg-xprop')
+makedepends=('git')
+optdepends=('dmenu: url bar and search'
+'ca-certificates: SSL verification'
+'st: default terminal for the download handler'
+'curl: default download handler')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=(config.h
+        'http://surf.suckless.org/patches/surf-0.6-homepage.diff'
+        'http://surf.suckless.org/patches/surf-git-20160127-searchengines.diff'
+        "$_pkgname::git+http://git.suckless.org/surf")
+md5sums=('3ce22558be0d16d0fffae73285cf366b'
+         '8fd342cae180ba787248fbf54da52529'
+         '9bb7c51962d779e0a18eb9025884341f'
+         'SKIP')
+
+pkgver() {
+  cd "$_pkgname"
+  git describe --tags | sed 's/-/\./g'
+}
+
+prepare() {
+  cd "$_pkgname"
+
+  # get this piece of shit off my computer
+  rm CODE_OF_CONDUCT.md
+  
+	for file in "${source[@]}"; do
+		if [[ "$file" == "config.h" ]]; then
+			# add config.h if present in source array
+			cp "$srcdir/$file" .
+		elif [[ "$file" == *.diff || "$file" == *.patch ]]; then
+			# add all patches present in source array
+			patch -Np1 <"$srcdir/$(basename ${file})"
+		fi
+	done
+}
+
+build() {
+  cd "$_pkgname"
+  make PREFIX=/usr DESTDIR="$pkgdir"
+}
+
+package() {
+  cd "$_pkgname"
+  make PREFIX=/usr DESTDIR="$pkgdir" install
+  install -Dm644 LICENSE "$pkgdir/usr/share/licenses/$pkgname/LICENSE"
+}
+
+# vim:set ts=2 sw=2 et:
