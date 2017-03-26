@@ -16,9 +16,10 @@ depends=('libxft')
 makedepends=('ncurses' 'libxext' 'git')
 epoch=1
 # include config.h and any patches you want to have applied here
-source=('git://git.suckless.org/st' config.h)
-sha1sums=('SKIP' 'SKIP')
-
+source=(config.h
+		'git://git.suckless.org/st')
+md5sums=('c06d420b571a36e52bcc19b7a82ac70a'
+		  'SKIP')
 provides=("${_pkgname}")
 conflicts=("${_pkgname}")
 
